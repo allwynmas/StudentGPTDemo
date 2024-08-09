@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Gender</th>
         <th>Subjects</th>
+        <th>Actions</th> <!-- New column for actions -->
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,12 @@
         <td th:text="${student.name}">John Doe</td>
         <td th:text="${student.gender}">Male</td>
         <td th:text="${#strings.arrayJoin(student.subjects.toArray(), ', ')}">Math, Science</td>
+        <td>
+            <form th:action="@{/students/edit}" method="get">
+                <input type="hidden" name="id" th:value="${student.id}"/>
+                <button type="submit">Edit</button>
+            </form>
+        </td> <!-- New cell for the Edit button -->
     </tr>
     </tbody>
 </table>

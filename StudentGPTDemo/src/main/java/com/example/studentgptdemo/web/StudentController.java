@@ -40,4 +40,20 @@ public class StudentController {
         model.addAttribute("students", students);
         return "studentList";
     }
+
+    @GetMapping("/edit")
+    public String showEditForm(Long id, Model model) {
+        Student student = studentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+        List<String> subjects = Arrays.asList("Math", "Science", "History", "Art");
+        model.addAttribute("student", student);
+        model.addAttribute("subjects", subjects);
+        return "studentForm";
+    }
+
+    @PostMapping("/edit")
+    public String submitEditForm(Student student) {
+        studentRepository.save(student);
+        return "redirect:/students/list";
+    }
+
 }

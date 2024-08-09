@@ -10,5 +10,4 @@ public class StudentGptDemoApplication {
 
         SpringApplication.run(StudentGptDemoApplication.class, args);
     }
-
 }
