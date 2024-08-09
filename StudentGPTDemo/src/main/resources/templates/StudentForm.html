@@ -7,6 +7,10 @@
 <body>
 <h1>Student Registration Form</h1>
 <form th:action="@{/students/register}" th:object="${student}" method="post">
+
+    <!-- Hidden input field for ID -->
+    <input type="hidden" th:field="*{id}">
+
     <label for="name">Name:</label>
     <input type="text" id="name" th:field="*{name}" required><br>
 

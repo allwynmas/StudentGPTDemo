@@ -3,6 +3,60 @@
 <head>
     <title>Student List</title>
     <link rel="stylesheet" th:href="@{/style.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .actions button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 <h1>Registered Students</h1>
@@ -13,7 +67,7 @@
         <th>Name</th>
         <th>Gender</th>
         <th>Subjects</th>
-        <th>Actions</th> <!-- New column for actions -->
+        <th class="actions">Actions</th> <!-- Center align the Actions header -->
     </tr>
     </thead>
     <tbody>
@@ -22,12 +76,12 @@
         <td th:text="${student.name}">John Doe</td>
         <td th:text="${student.gender}">Male</td>
         <td th:text="${#strings.arrayJoin(student.subjects.toArray(), ', ')}">Math, Science</td>
-        <td>
+        <td class="actions"> <!-- Center align the Edit button -->
             <form th:action="@{/students/edit}" method="get">
                 <input type="hidden" name="id" th:value="${student.id}"/>
                 <button type="submit">Edit</button>
             </form>
-        </td> <!-- New cell for the Edit button -->
+        </td>
     </tr>
     </tbody>
 </table>

@@ -28,11 +28,24 @@ public class StudentController {
         return "studentForm";
     }
 
+//    @PostMapping("/register")
+//    public String submitForm(Student student) {
+//        studentRepository.save(student);
+//        return "redirect:/students/register";
+//    }
+
     @PostMapping("/register")
     public String submitForm(Student student) {
-        studentRepository.save(student);
-        return "redirect:/students/register";
+        if (student.getId() != null) {
+            // Update existing student
+            studentRepository.save(student);
+        } else {
+            // Create a new student
+            studentRepository.save(student);
+        }
+        return "redirect:/students/list";
     }
+
 
     @GetMapping("/list")
     public String listStudents(Model model) {
