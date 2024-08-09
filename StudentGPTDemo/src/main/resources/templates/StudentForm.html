@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="<http://www.thymeleaf.org>">
+<head>
+    <title>Student Registration GPT Demo!</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Student Registration Form</h1>
+<form th:action="@{/students/register}" th:object="${student}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required><br>
+
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="Male" th:field="*{gender}"> Male
+    <input type="radio" id="female" name="gender" value="Female" th:field="*{gender}"> Female<br>
+
+    <label>Subjects:</label><br>
+    <th:block th:each="subject : ${subjects}">
+        <input type="checkbox" th:value="${subject}" th:field="*{subjects}"> <span th:text="${subject}"></span><br>
+    </th:block>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+<!-- Add the View button here -->
+<form th:action="@{/students/list}" method="get">
+    <button type="submit">View Registered Students</button>
+</form>
+</body>
+</html>
